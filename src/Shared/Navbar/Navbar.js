@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center ">
         <div className="">
           <label htmlFor="sidenav" className=" drawer-button">
-            <FiMenu className="mr-2"></FiMenu>
+            <FiMenu className="mr-2 cursor-pointer"></FiMenu>
           </label>
         </div>
 

@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom';
 import { FcGoogle, IconName } from "react-icons/fc";
 import { HiChevronLeft } from "react-icons/hi2";
 import { toast } from 'react-hot-toast';
+import useTitle from '../../Hooks/useTitle';
 
 const Register = () => {
     const [role, setRole] = useState(null);
+
+    useTitle('Register-page')
+
     // console.log(role);
 
     // const { createUser } = useContext(AuthContext)
@@ -33,7 +37,7 @@ const Register = () => {
             <div className='flex justify-center items-center  xl:w-1/3 md:w-1/2 w-11/12 mx-auto border shadow '>
 
                 <form onSubmit={handleSingUp} noValidate="" className=" sm:space-y-8 space-y-5 pt-3 pb-5 px-6 ng-untouched ng-pristine ng-valid w-full">
-                    
+
                     <div className='text-center '>
                         <h2 className='text-2xl font-semibold text-blue-700'>Create an account</h2>
                         <h4>to continue to <span className='font-semibold'>News Portal Daily News</span></h4>

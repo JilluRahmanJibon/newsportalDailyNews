@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle, IconName } from "react-icons/fc";
 import { HiChevronLeft } from "react-icons/hi2";
+import useTitle from '../../Hooks/useTitle';
 
 const Login = () => {
-
+useTitle('Login-page')
 
     return (
         <div>
