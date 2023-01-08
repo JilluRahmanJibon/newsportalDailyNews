@@ -1,24 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ newsData }) => {
+  // console.log(newsData);
   return (
     <div className="pb-5 ">
       <div>
-        <img
-          src="https://static01.nyt.com/images/2023/01/05/multimedia/05Well-DynamicWarmUp-final-1-11b4/05Well-DynamicWarmUp-final-1-11b4-threeByTwoSmallAt2X.jpg?format=pjpg&quality=75&auto=webp&disable=upscale"
-          alt=""
-        />
+        <img src={newsData?.picture} alt="" />
       </div>
       <div>
         <Link className="text-3xl font-bold pt-2">
-          The Best Warm-Up Is a Dynamic Warm-Up
+          {newsData?.title?.slice(0, 50)}
         </Link>
-        <p className="py-2">
-          Enthusiastically promote resource maximizing alignments with superior
-          information. Rapidiously fashion high-payoff benefits and parallel
-          e-commerce. Credibly deliver.
-        </p>
+        <p className="py-2">{newsData?.description?.slice(0, 100)}</p>
       </div>
     </div>
   );
