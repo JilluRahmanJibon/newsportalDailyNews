@@ -13,9 +13,7 @@ const CalturalData = () => {
           Completely e-enable revolutionary alignments and B2B human capital.
           Uniquely develop plug-and-play catalysts.
         </p>
-        <div className=" h-px bg-black"></div>
       </div>
-      <div className="mx-2 w-px bg-black"></div>
     </div>
   );
 };

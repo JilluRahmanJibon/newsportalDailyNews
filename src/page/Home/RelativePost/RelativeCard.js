@@ -9,12 +9,14 @@ const RelativeCard = ({ newsData }) => {
       <div>
         <div className="w-full lg:py-2  flex  ">
           <div>
-            <Link className="text-3xl font-bold">{newsData?.title}</Link>
-            <p className="py-2 pr-2">{newsData?.description?.slice(0, 100)}</p>
+            <Link className="text-2xl font-bold">
+              {newsData?.title.slice(0, 25) + "..."}
+            </Link>
+            <p className="py-2 pr-2">{newsData?.description?.slice(0, 70)}</p>
           </div>
           <div className="px-2">
             <img
-              className="w-[500px] h-full object-cover"
+              className="w-[400px] object-cover h-[200px] "
               src={newsData?.picture}
               alt="/"
             />

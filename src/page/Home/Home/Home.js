@@ -1,6 +1,5 @@
 import React from "react";
 import useTitle from "../../../Hooks/useTitle";
-import CategoryDataCard from "../categoryData/CategoryDataCard";
 import HomeCulture from "../HomeCulture/HomeCulture";
 import HomeFixedData from "../HomeFixedData/HomeFixedData";
 import MainHome from "../MainHome/MainHome";
@@ -16,8 +15,6 @@ const Home = () => {
       </div>
       <RelativePost />
       <HomeCulture />
-      <h1>hello</h1>
-      <CategoryDataCard />
     </div>
   );
 };
