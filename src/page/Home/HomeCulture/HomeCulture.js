@@ -18,7 +18,7 @@ const HomeCulture = () => {
               <p>
                 Authoritatively negotiate robust products via visionary
                 paradigms. Objectively architect unique models and just in time
-                mindshare. Completely.
+                helllo and hello
               </p>
             </div>
             <div className="w-px h-full bg-black">hello</div>
