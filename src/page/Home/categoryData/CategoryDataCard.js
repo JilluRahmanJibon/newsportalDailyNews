@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const CategoryDataCard = ({ newsData }) => {
   //   console.log(newsData);
   return (
-    <div className="lg:flex md:flex  py-5 px-2">
+    <div className=" md:flex  py-5 px-2">
       <div>
-        <h1>{newsData?.author?.published_date}</h1>
+        <h1 className="w-[150px] pt-2 text-sm font-bold">{newsData?.author?.published_date}</h1>
       </div>
       <div className="lg:flex md:flex">
         <div className="w-full h-full  ">
