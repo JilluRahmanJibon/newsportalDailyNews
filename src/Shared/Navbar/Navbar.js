@@ -10,7 +10,9 @@ const Navbar = () => {
           <FiMenu className="mr-2"></FiMenu>
         </label>
         <div className="navbar-start">
-          <a className="text-lg font-bold">Daily Star</a>
+          <Link to="/" className="text-lg font-bold">
+            Daily News
+          </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
