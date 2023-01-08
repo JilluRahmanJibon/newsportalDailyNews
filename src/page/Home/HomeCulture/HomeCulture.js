@@ -21,7 +21,7 @@ const HomeCulture = () => {
                 mindshare. Completely.
               </p>
             </div>
-            <div className="w-px h-full bg-black"></div>
+            <div className="w-px h-full bg-black">hello</div>
           </div>
         </div>
       </div>
