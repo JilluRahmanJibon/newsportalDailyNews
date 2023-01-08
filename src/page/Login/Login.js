@@ -15,7 +15,7 @@ const Login = () => {
         toast.success("User Registration Successfully Done!");
         reset();
       })
-      .then((err) => console.error(err));
+      .catch((err) => console.error(err));
   };
 
   const handelGoogleRegister = () => {
