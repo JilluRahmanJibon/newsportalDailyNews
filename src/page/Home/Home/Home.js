@@ -13,6 +13,7 @@ const Home = () => {
       </div>
       <RelativePost />
       <HomeCulture />
+      <h1>hello</h1>
     </div>
   );
 };
