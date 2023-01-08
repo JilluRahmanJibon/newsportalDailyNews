@@ -9,11 +9,11 @@ import axios from "axios";
 
 const Login = () => {
   const { login, googleLogin, setLoading } = useContext(AuthContext);
-  const [signInUserEmail, setSignInUserEmail] = useState('');
-  const [token] = useToken(signInUserEmail)
+  const [signInUserEmail, setSignInUserEmail] = useState("");
+  const [token] = useToken(signInUserEmail);
 
   const { register, handleSubmit, reset } = useForm();
-  const [firebaseError, setFirebaseError] = useState('');
+  const [firebaseError, setFirebaseError] = useState("");
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
@@ -23,64 +23,60 @@ const Login = () => {
     navigate(from, { replace: true });
   }
 
-
   const handelLogin = (data) => {
     login(data.email, data.password)
-      .then(result => {
+      .then((result) => {
         const user = result.user;
-        axios.post(`${process.env.REACT_APP_ApiUrl}users`, {
-          email: user?.email,
-          name: data.name,
-
-        }).then(res => {
-          if (res.data.acknowledged) {
-            setSignInUserEmail(user?.email)
-            toast.success('Account Created Successful', { duration: 1500 })
-            reset()
-          }
-        }).catch(err => {
-          console.log(err);
-          setFirebaseError(err.message)
-          setLoading(false)
-
-        })
+        axios
+          .post(`${process.env.REACT_APP_ApiUrl}users`, {
+            email: user?.email,
+            name: data.name,
+          })
+          .then((res) => {
+            if (res.data.acknowledged) {
+              setSignInUserEmail(user?.email);
+              toast.success("Account Created Successful", { duration: 1500 });
+              reset();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setFirebaseError(err.message);
+            setLoading(false);
+          });
       })
-      .catch((err) => {
-        console.error(err.message)
-        setFirebaseError(err.message)
-        setLoading(false)
-      });
-    setFirebaseError('')
+      .then((err) => console.error(err));
   };
-
 
   const handelGoogleLogin = () => {
     googleLogin()
-      .then(result => {
+      .then((result) => {
         const user = result.user;
-        axios.post(`${process.env.REACT_APP_ApiUrl}users`, {
-          role: 'reader',
-          email: user?.email,
-          name: user?.displayName,
-        }).then(res => {
-          if (res.data.acknowledged) {
-            setSignInUserEmail(user?.email)
-            toast.success('Sign in Account Successfully', { duration: 1500 })
-          }
-        }).catch(err => {
-          console.log(err);
-          setFirebaseError(err.message)
-          setLoading(false)
-        })
+        axios
+          .post(`${process.env.REACT_APP_ApiUrl}users`, {
+            role: "reader",
+            email: user?.email,
+            name: user?.displayName,
+          })
+          .then((res) => {
+            if (res.data.acknowledged) {
+              setSignInUserEmail(user?.email);
+              toast.success("Sign in Account Successfully", { duration: 1500 });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            setFirebaseError(err.message);
+            setLoading(false);
+          });
       })
       .catch((err) => {
-        setFirebaseError(err.message)
-        setLoading(false)
+        setFirebaseError(err.message);
+        setLoading(false);
       });
-    setFirebaseError('')
+    setFirebaseError("");
   };
 
-  
   return (
     <div>
       <h1 className="text-center text-3xl py-3 shadow-xl mb-3 font-bold italic ">
@@ -90,20 +86,31 @@ const Login = () => {
         <div className="bg-white rounded-md shadow-2xl pb-12 pt-3 w-96 mx-auto my-10">
           <div className="pb-6">
             {firebaseError && (
-              <p className=" text-center text-red-400 font-semibold">{firebaseError.replaceAll('Firebase:', ' ').replaceAll('Error', " Error:").replaceAll('(auth/', ' ').replaceAll('email', 'Email').replaceAll(')', '')}</p>
+              <p className=" text-center text-red-400 font-semibold">
+                {firebaseError
+                  .replaceAll("Firebase:", " ")
+                  .replaceAll("Error", " Error:")
+                  .replaceAll("(auth/", " ")
+                  .replaceAll("email", "Email")
+                  .replaceAll(")", "")}
+              </p>
             )}
           </div>
           <form
             className=" flex flex-col gap-4 items-center justify-center "
             onSubmit={handleSubmit(handelLogin)}
           >
-            <input required type='email'
+            <input
+              required
+              type="email"
               className="border bg-white text-gray-600 border-black p-2 w-80"
               {...register("email", { required: "Email is Required" })}
               placeholder="Enter your email"
             />
 
-            <input required type='password'
+            <input
+              required
+              type="password"
               className="border bg-white text-gray-600 border-black p-2 w-80"
               {...register("password", { required: "Password is Required" })}
               placeholder="Enter your password"
@@ -129,7 +136,6 @@ const Login = () => {
               Login With Google
             </button>
           </div>
-
         </div>
       </div>
     </div>
