@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RelativeCard = ({ newsData }) => {
-  console.log(newsData);
+ 
   return (
     <div>
       <h1 className="font-bold">{newsData?.category}</h1>
