@@ -6,7 +6,9 @@ const NewsDetails = () => {
   console.log(detailsData);
   return (
     <div>
-      <h1>this is NewsDetails</h1>
+      <h1 className="text-[28px] font-semibold">{detailsData?.title}</h1>
+      <img src={detailsData?.picture} alt="" />
+      <h1 className="text-[18px]">{detailsData?.description}</h1>
     </div>
   );
 };
