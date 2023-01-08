@@ -12,8 +12,8 @@ const Navbar = () => {
           </label>
         </div>
 
-        <div className="">
-          <ul className="lg:flex gap-5 px-1 text-xs cursor-pointer hidden">
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 text-xs cursor-pointer">
             <li>
               <a>U.S</a>
             </li>

@@ -1,11 +1,13 @@
 import React from "react";
+import HomeCulture from "../HomeCulture/HomeCulture";
+import HomeFixedData from "../HomeFixedData/HomeFixedData";
+import MainHome from "../MainHome/MainHome";
+import RelativePost from "../RelativePost/RelativePost";
 
 const Home = () => {
   return (
     <div>
-      <div className="mx-52">
-        <h1>this is homePage....</h1>
-      </div>
+      <h1>this is home....</h1>
     </div>
   );
 };
