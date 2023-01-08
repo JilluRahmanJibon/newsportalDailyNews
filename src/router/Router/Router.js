@@ -4,6 +4,7 @@ import Main from "../../layout/Main";
 import ErrorPage from "../../ErrorPage/ErrorPage";
 import Login from "../../page/Login/Login";
 import Register from "../../page/Register/Register";
+import CategoryData from "../../page/Home/categoryData/CategoryData";
 
 export const routes = createBrowserRouter([
   {
@@ -13,7 +14,12 @@ export const routes = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/home", element: <Home /> },
-
+      {
+        path: "/news/category/:category",
+        element: <CategoryData />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:8000/news/category/${params.category}`),
+      },
     ],
   },
   { path: "/login", element: <Login /> },

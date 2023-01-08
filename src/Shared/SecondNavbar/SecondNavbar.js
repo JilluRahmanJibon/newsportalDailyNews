@@ -14,14 +14,14 @@ const SecondNavbar = () => {
 
   //unique category name
   const uniqueCategory = [...new Set(categoryNames)];
-  console.log(uniqueCategory);
+  // console.log(uniqueCategory);
 
   return (
     <div>
       <ul className="lg:flex gap-5 px-1 text-xs cursor-pointer justify-center items-center font-semibold mb-2 hidden ">
         {uniqueCategory.map((category, uxi) => (
           <li key={uxi}>
-            <Link>{category}</Link>
+            <Link to={`/news/category/${category}`}>{category}</Link>
           </li>
         ))}
       </ul>
