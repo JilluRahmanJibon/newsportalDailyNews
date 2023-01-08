@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import RelativeCard from "./RelativeCard";
 
 const RelativePost = () => {
+  const [news, setNews] = React.useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/news/category/hotTopic")
+      .then((res) => res.json())
+      .then((data) => setNews(data));
+  }, []);
+  // console.log(news);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 mx-auto ">
-      <RelativeCard />
-      <RelativeCard />
-      <RelativeCard />
-      <RelativeCard />
-      <RelativeCard />
-      <RelativeCard />
+      {news.map((newsData, uxi) => (
+        <RelativeCard key={uxi} newsData={newsData} />
+      ))}
     </div>
   );
 };

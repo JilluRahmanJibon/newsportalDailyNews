@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "./Card";
 
 const MainHome = () => {
+  const [news, setNews] = React.useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/news/category/World")
+      .then((res) => res.json())
+      .then((data) => setNews(data));
+  }, []);
+  // console.log(news);
   return (
     <div className="">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {news.map((newsData, uxi) => (
+        <Card key={uxi} newsData={newsData} />
+      ))}
     </div>
   );
 };
