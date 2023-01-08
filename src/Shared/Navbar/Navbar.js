@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { FaUserCircle } from 'react-icons/fa';
+
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 const Navbar = () => {
-  const { user } = useContext(AuthContext)
+  const { user, userLogOut } = useContext(AuthContext)
   const [userRole, setUserRole] = useState({});
   const [checkRole, setCheckRole] = useState(false);
 
@@ -58,7 +59,10 @@ const Navbar = () => {
                   {user?.photoURL ? <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" /> : <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" />}
                 </div>
                 {
-                  checkRole && <div className="absolute right-0 bg-blue-500 w-[150px] p-3 rounded-tr-none rounded-lg">publisher</div>
+                  checkRole && <div className="absolute right-0 bg-blue-500 w-[150px] p-3 rounded-tr-none rounded-lg text-white">
+                    <h1>Profile </h1>
+                    <button onClick={() => userLogOut()} className="">Log out</button>
+                  </div>
                 }
               </div>}
 
