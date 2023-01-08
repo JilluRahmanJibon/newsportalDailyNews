@@ -1,15 +1,17 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import Footer from "../Shared/Footer/Footer";
 import Navbar from "../Shared/Navbar/Navbar";
 
 const Main = () => {
   return (
     <div>
-      <Navbar></Navbar>
-      <div className="drawer ">
+      <div className="drawer">
         <input id="sidenav" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
+        <div className="drawer-content ">
+          <Navbar></Navbar>
           <Outlet></Outlet>
+          <Footer />
         </div>
         <div className="drawer-side ">
           <label htmlFor="sidenav" className="drawer-overlay "></label>
