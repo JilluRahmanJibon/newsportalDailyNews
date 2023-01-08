@@ -33,13 +33,12 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // user profile update
-  const userProfileUpdate = (name, photoUrl) => {
+  const userProfileUpdate = (name, ) => {
     updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photoUrl,
+     
     });
-    if (photoUrl) {
-    }
+   
   };
   // log in with email password
   const login = (email, password) => {

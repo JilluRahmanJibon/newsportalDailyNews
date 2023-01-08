@@ -1,9 +1,10 @@
 import React from "react";
 
-const CategoryDataCard = () => {
+const CategoryDataCard = ({ newsData }) => {
+  //   console.log(newsData);
   return (
     <div>
-      <h1>hello banglaesh dafsadfs</h1>
+      <h1>this is CategoryDataCard</h1>
     </div>
   );
 };
