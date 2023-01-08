@@ -5,6 +5,7 @@ import ErrorPage from "../../ErrorPage/ErrorPage";
 import Login from "../../page/Login/Login";
 import Register from "../../page/Register/Register";
 import CategoryData from "../../page/Home/categoryData/CategoryData";
+import NewsDetails from "../../page/Home/NewsDetails/NewsDetails";
 
 export const routes = createBrowserRouter([
   {
