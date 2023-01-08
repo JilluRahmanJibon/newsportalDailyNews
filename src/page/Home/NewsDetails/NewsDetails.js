@@ -1,8 +1,9 @@
 import React from "react";
+import { useLoaderData } from "react-router";
 
 const NewsDetails = () => {
   const detailsData = useLoaderData();
-  console.log(detailsData);
+  // console.log(detailsData);
   return (
     <div>
       <h1 className="text-[28px] font-semibold">{detailsData?.title}</h1>
