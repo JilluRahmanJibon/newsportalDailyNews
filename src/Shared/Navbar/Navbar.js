@@ -4,24 +4,19 @@ import { RxCrossCircled } from "react-icons/rx";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
-    <div className="mx-28">
-      <div className="navbar ">
-        <label htmlFor="sidenav" className=" drawer-button">
-          <FiMenu className="mr-2"></FiMenu>
-        </label>
-        <div className="navbar-start">
-          <Link to="/" className="text-lg font-bold">
-            Daily News
-          </Link>
+    <div className="lg:mx-28 md:20 mx-10">
+      <div className="flex justify-between items-center ">
+        <div className="">
+          <label htmlFor="sidenav" className=" drawer-button">
+            <FiMenu className="mr-2"></FiMenu>
+          </label>
         </div>
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-xs cursor-pointer">
-            <Link to='/home'>
-              <li>
-                <a>U.S</a>
-              </li>
-            </Link>
+            <li>
+              <a>U.S</a>
+            </li>
 
             <li>
               <a>ASIA</a>
@@ -34,7 +29,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="">
           <Link
             to="/login"
             className="text-white font-bold py-1 px-2 bg-blue-500 hover:bg-blue-700 rounded text-xs"

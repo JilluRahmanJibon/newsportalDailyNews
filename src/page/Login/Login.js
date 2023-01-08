@@ -12,8 +12,8 @@ const Login = () => {
                 <div className='flex justify-center items-center  md:w-1/4 w-11/12 mx-auto border shadow '>
                     <div>
                         <div className='flex items-center pt-4'>
-                            <HiChevronLeft className='font-bold text-xl'></HiChevronLeft>
-                            <Link><h4 className='text-lg'>Back</h4></Link>
+                            <Link to='/' className='flex'> <HiChevronLeft className='font-bold mt-1 text-xl'></HiChevronLeft>
+                                <h4 className='text-lg'>Back</h4></Link>
                         </div>
 
                         <form noValidate="" className=" sm:space-y-8 space-y-5 py-6 px-6 ng-untouched ng-pristine ng-valid w-full">

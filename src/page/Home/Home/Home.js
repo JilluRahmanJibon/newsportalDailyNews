@@ -6,7 +6,6 @@ import RelativePost from "../RelativePost/RelativePost";
 
 const Home = () => {
   return (
-
     <div className=" xl:w-9/12 w-11/12 mx-auto py-5 ">
       <div className="flex">
         <MainHome />
