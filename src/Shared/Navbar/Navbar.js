@@ -17,9 +17,11 @@ const Navbar = () => {
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-xs cursor-pointer">
-            <li>
-              <a>U.S</a>
-            </li>
+            <Link to='/home'>
+              <li>
+                <a>U.S</a>
+              </li>
+            </Link>
 
             <li>
               <a>ASIA</a>
