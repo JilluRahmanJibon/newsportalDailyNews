@@ -29,16 +29,13 @@ const Register = () => {
 
     return (
         <div className="">
+            <h1 className='text-center text-3xl py-3 shadow-xl mb-3 font-bold italic '><Link to='/'>Daily News</Link></h1>
+            <div className='flex justify-center items-center  xl:w-1/3 md:w-1/2 w-11/12 mx-auto border shadow '>
 
-            <div className='flex justify-center items-center  sm:w-1/4 w-11/12 mx-auto border shadow  '>
-
-                <form onSubmit={handleSingUp} noValidate="" className=" sm:space-y-8 space-y-5 py-6 px-6 ng-untouched ng-pristine ng-valid w-full">
-                    <div className='flex items-center '>
-                       <Link to='/' className='flex'> <HiChevronLeft className='font-bold mt-1 text-xl'></HiChevronLeft>
-                            <h4 className='text-lg'>Back</h4></Link>
-                    </div>
+                <form onSubmit={handleSingUp} noValidate="" className=" sm:space-y-8 space-y-5 pt-3 pb-5 px-6 ng-untouched ng-pristine ng-valid w-full">
+                    
                     <div className='text-center '>
-                        <h2 className='text-2xl p-4 font-semibold text-blue-700'>Create an account</h2>
+                        <h2 className='text-2xl font-semibold text-blue-700'>Create an account</h2>
                         <h4>to continue to <span className='font-semibold'>News Portal Daily News</span></h4>
                     </div>
                     <div>
