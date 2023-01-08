@@ -55,7 +55,7 @@ const Navbar = () => {
               {userRole?.role === 'publisher' && <div>
 
                 <div onClick={() => setCheckRole(!checkRole)} className="w-8 h-8 rounded-full cursor-pointer">
-                  {user?.photoURL ? <img src={user?.photoURL} className='w-8 h-8 border-2 border-red-400 rounded-full' alt="" /> : <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" />}
+                  {user?.photoURL ? <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" /> : <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" />}
                 </div>
                 {
                   checkRole && <div className="absolute right-0 bg-blue-500 w-[150px] p-3 rounded-tr-none rounded-lg">publisher</div>

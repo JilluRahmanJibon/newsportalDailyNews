@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ newsData }) => {
   // console.log(newsData);
   return (
-    <Link to={`/news/${newsData?._id}`} className="pb-5 ">
+    <Link to={`news/${newsData?._id}`} className="pb-5 ">
       <div>
         <img src={newsData?.picture} alt="" />
       </div>
