@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ newsData }) => {
   // console.log(newsData);
   return (
-    <Link to={`/news/${newsData._id}`}>
+    <>
       <div className="flex flex-col lg:flex-row">
         <div className="w-full h-full xl:w-[500px] lg:pr-20">
           <h1 className="text-3xl font-bold pt-2">{newsData?.title}</h1>
