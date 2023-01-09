@@ -31,8 +31,13 @@ const Main = () => {
           <Footer />
         </div>
         <div className="drawer-side ">
+
           <label htmlFor="sidenav" className="drawer-overlay "></label>
-          <ul className="menu p-4 w-80 bg-white font-bold">
+
+          <ul className="menu p-4 sm:w-80 bg-white font-bold">
+            <label htmlFor="sidenav" className="absolute btn btn-sm btn-circle z-50 right-2 top-2 cursor-pointer font-bold drawer-button">
+              X
+            </label>
             {uniqueCategory.map((category, uxi) => (
               <li key={uxi}>
                 <Link to={`/news/category/${category}`}>{category}</Link>

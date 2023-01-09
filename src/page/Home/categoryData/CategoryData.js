@@ -1,13 +1,16 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import CategoryDataCard from "./CategoryDataCard";
 
 const CategoryData = () => {
   const alldata = useLoaderData();
   //   console.log(alldata);
 
   return (
-    <div>
-      <h1>this is category</h1>
+    <div className="max-w-[1440px] mx-auto">
+      {alldata.map((newsData, uxi) => (
+        <CategoryDataCard key={uxi} newsData={newsData} />
+      ))}
     </div>
   );
 };

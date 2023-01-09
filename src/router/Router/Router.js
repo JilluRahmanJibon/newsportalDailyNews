@@ -6,6 +6,8 @@ import Login from "../../page/Login/Login";
 import Register from "../../page/Register/Register";
 import CategoryData from "../../page/Home/categoryData/CategoryData";
 import NewsDetails from "../../page/Home/NewsDetails/NewsDetails";
+import AddNews from "../../page/AddNews/AddNews";
+import PublisherRoute from "./PublisherRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -15,6 +17,7 @@ export const routes = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/home", element: <Home /> },
+      { path: "/news/addnews", element: <AddNews /> },
       {
         path: "/news/category/:category",
         element: <CategoryData />,
