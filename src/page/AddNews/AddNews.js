@@ -1,16 +1,22 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
+import SmallLoader from '../../Shared/Loader/SmallLoader';
 
 const AddNews = () => {
+    useTitle('Add News')
     const { user } = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
     const [selcetedImage, setSelcetedImage] = useState();
-
+    const [categories, setCategories] = useState([]);
     const { register, handleSubmit } = useForm();
-    function formatDate(date) {
+    const navigate =useNavigate()
+        
+        function formatDate(date) {
         const yyyy = date.getFullYear();
         let dd = date.getDate() + 1;
         if (dd < 10) dd = "0" + dd;
@@ -24,6 +30,8 @@ const AddNews = () => {
     const currentDate = formatDate(new Date());
 
     const handleNewsPublish = (data) => {
+        setLoading(true);
+
         const formData = new FormData()
         formData.append('image', selcetedImage)
         fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_ImageKey}`, { method: 'POST', body: formData }).then(res => res.json()).then(img => {
@@ -35,18 +43,19 @@ const AddNews = () => {
                         email: user?.email,
                         name: user?.displayName,
                         published_date: currentDate,
-                        img:user?.photoURL
+                        img: user?.photoURL
                     },
                     title: data.title,
                     description: data.description,
                     picture: image,
-                    category:'',
+                    category: data.cate,
 
                 }).then(res => {
                     if (res.data.acknowledged) {
                         // navigate('/dashboard/myAllProducts')
+                        navigate('/')
                         setLoading(false)
-                        toast.success('Product is added successfully.', { duration: 1500 })
+                        toast.success('Post successfully added!.', { duration: 1500 })
                     }
                 }).catch(err => {
                     setLoading(false)
@@ -61,6 +70,22 @@ const AddNews = () => {
             setSelcetedImage(e.target.files[0])
         }
     }
+
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_ApiUrl}news`)
+            .then((res) => res.json())
+            .then((data) => setCategories(data));
+    }, []);
+    // console.log(category);
+    // category name
+    const categoryNames = categories.map((category) => category.category);
+
+    //unique category name
+    const uniqueCategory = [...new Set(categoryNames)];
+    // console.log(uniqueCategory);
+
+
     return (
         <div>
             <div className="bg-white rounded-md shadow-2xl  py-12 w-96 mx-auto my-10">
@@ -81,8 +106,22 @@ const AddNews = () => {
                     ></textarea>
 
                     <div className='w-full'>
-                        <select className='border border-black  text-gray-600  p-2 w-full' name="" id="">
-                            <option value="">Select Post Category</option>
+                        <div className="flex justify-between mb-2">
+                            <label htmlFor="useraccount" className="text-sm">
+                                Choice Your News Type
+                            </label>
+                        </div>
+                        <select
+                            name="option"
+
+                            className="select select-bordered  w-full bg-white "
+                        >
+                            {uniqueCategory.map((data, uxi) => (
+                                <option   {...register("cate")} data={data} key={uxi} value={data}>
+                                    {data}
+                                </option>
+                            ))}
+
                         </select>
                     </div>
 
@@ -109,8 +148,8 @@ const AddNews = () => {
                         <input id='uploadImage' className="text-sm cursor-pointer w-36 hidden" type="file" onChange={imageChange} accept='image/*' />
                     </div>
 
-                    <button disabled={!selcetedImage} className="btn p-2 w-80 rounded-none bg-black text-white font-bold hover:bg-gray-800">
-                        Publish
+                    <button disabled={!selcetedImage || loading} className="btn p-2 w-80 rounded-none bg-black text-white font-bold hover:bg-gray-800">
+                        {loading ? <SmallLoader /> : '  Publish'}
                     </button>
 
                 </form>

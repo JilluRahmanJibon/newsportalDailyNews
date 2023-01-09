@@ -19,8 +19,12 @@ const Navbar = () => {
       setUserRole(res.data);
     })
 
-  }, [user?.email]);
+  }, [user?.email], checkRole, userRole?.role);
   console.log(user);
+
+
+
+  
   return (
     <div className="lg:mx-28 md:20 mx-10 relative">
       <div className="flex justify-between items-center ">
@@ -54,7 +58,7 @@ const Navbar = () => {
           {user?.uid ?
             <div>
               {/* publisher check and profile  */}
-              {userRole?.email===user?.email && userRole?.role === 'publisher' && <div>
+              {userRole?.email === user?.email && userRole?.role === 'publisher' && <div>
 
                 <div onClick={() => setCheckRole(!checkRole)} className="w-8 h-8 rounded-full cursor-pointer">
                   {user?.photoURL ? <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" /> : <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" />}
