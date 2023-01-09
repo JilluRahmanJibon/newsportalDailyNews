@@ -1,49 +1,121 @@
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const AddNews = () => {
     const { user } = useContext(AuthContext)
-    
+    const [loading, setLoading] = useState(false)
+    const [selcetedImage, setSelcetedImage] = useState();
+
     const { register, handleSubmit } = useForm();
+    function formatDate(date) {
+        const yyyy = date.getFullYear();
+        let dd = date.getDate() + 1;
+        if (dd < 10) dd = "0" + dd;
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+        let strTime =
+            monthNames[date.getMonth()] + "/" + dd + "/" + yyyy;
+        return strTime;
+    }
+    const currentDate = formatDate(new Date());
 
     const handleNewsPublish = (data) => {
-        console.log(data);
+        const formData = new FormData()
+        formData.append('image', selcetedImage)
+        fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_ImageKey}`, { method: 'POST', body: formData }).then(res => res.json()).then(img => {
+            if (img.success) {
+                const image = img.data.url;
+
+                axios.post(`${process.env.REACT_APP_ApiUrl}news`, {
+                    author: {
+                        email: user?.email,
+                        name: user?.displayName,
+                        published_date: currentDate,
+                        img:user?.photoURL
+                    },
+                    title: data.title,
+                    description: data.description,
+                    picture: image,
+                    category:'',
+
+                }).then(res => {
+                    if (res.data.acknowledged) {
+                        // navigate('/dashboard/myAllProducts')
+                        setLoading(false)
+                        toast.success('Product is added successfully.', { duration: 1500 })
+                    }
+                }).catch(err => {
+                    setLoading(false)
+                    toast.error(err.message)
+                })
+            }
+        })
     }
 
-
+    const imageChange = e => {
+        if (e.target.files && e.target.files.length > 0) {
+            setSelcetedImage(e.target.files[0])
+        }
+    }
     return (
         <div>
-            
-            <div className="bg-white rounded-md shadow-2xl py-12 w-96 mx-auto my-10">
+            <div className="bg-white rounded-md shadow-2xl  py-12 w-96 mx-auto my-10">
                 <form
-                    className=" flex flex-col gap-4 items-center justify-center "
+                    className=" flex flex-col mx-2 gap-4 items-center justify-center "
                     onSubmit={handleSubmit(handleNewsPublish)}
                 >
-                    <input
-                        className="border bg-white text-gray-600 border-black p-2 w-80"
+                    <input required
+                        className="border w-full bg-white text-gray-600 border-black p-2 "
                         {...register("title", { required: "title is Required" })}
-                        placeholder="title"
+                        placeholder="Post title"
                     />
-                    <textarea
-                        className="border border-white bg-gray-700 text-white  p-2 w-80"
-                        placeholder="message"
-                        name="message"
+                    <textarea required
+                        className="border border-black  text-gray-600  p-2 w-full"
+                        placeholder="Post Description"
+                        {...register("description", { required: "description is Required" })}
+                        name="description"
                     ></textarea>
 
-                    <input
-                        className="border bg-white text-gray-600 border-black p-2 w-80"
-                        {...register("publish", { required: "date is Required" })}
-                        placeholder="Publish Date"
-                    />
+                    <div className='w-full'>
+                        <select className='border border-black  text-gray-600  p-2 w-full' name="" id="">
+                            <option value="">Select Post Category</option>
+                        </select>
+                    </div>
 
-                    <button className="btn p-2 w-80 rounded-none bg-black text-white font-bold hover:bg-gray-800">
+                    <div className=''>
+                        {
+                            selcetedImage ? <div className='relative'>
+                                <label htmlFor='uploadImage' className='absolute cursor-pointer z-50 top-1 left-1 bg-blue-600 py-1 px-3 rounded-sm '>Add new </label>
+                                <div className='flex relative justify-center '>
+                                    <img className='max-h-[400px] min-h-[250px] ' src={URL.createObjectURL(selcetedImage)} alt="" />
+                                </div></div> :
+                                <div className='animate-pulse'>
+                                    <svg className="text-indigo-500 w-24 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+                                    <div className="input_field flex flex-col w-max mx-auto text-center">
+                                        <label htmlFor='uploadImage'>
+
+                                            <div className="text bg-blue-600 text-white border border-primary rounded font-semibold cursor-pointer p-1 px-3 hover:bg-blue-500">Select Image</div>
+                                        </label>
+
+                                        <div className="title text-indigo-500 ">Image is required</div>
+                                    </div>
+                                </div>
+                        }
+
+                        <input id='uploadImage' className="text-sm cursor-pointer w-36 hidden" type="file" onChange={imageChange} accept='image/*' />
+                    </div>
+
+                    <button disabled={!selcetedImage} className="btn p-2 w-80 rounded-none bg-black text-white font-bold hover:bg-gray-800">
                         Publish
                     </button>
 
                 </form>
 
-            </div>        
+            </div>
         </div>
     );
 };

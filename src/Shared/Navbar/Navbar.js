@@ -20,6 +20,7 @@ const Navbar = () => {
     })
 
   }, [user?.email]);
+  console.log(user);
   return (
     <div className="lg:mx-28 md:20 mx-10 relative">
       <div className="flex justify-between items-center ">
@@ -32,17 +33,17 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-xs cursor-pointer">
             <li>
-              <a>U.S</a>
+              <Link>U.S</Link>
             </li>
 
             <li>
-              <a>ASIA</a>
+              <Link>ASIA</Link>
             </li>
             <li>
-              <a>INTERNATIONAL</a>
+              <Link>INTERNATIONAL</Link>
             </li>
             <li>
-              <a>CANADA</a>
+              <Link>CANADA</Link>
             </li>
             {userRole?.role === 'publisher' && <li>
               <Link to='/news/addnews'>Add News</Link>
@@ -50,10 +51,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="">
-          {user?.email ?
+          {user?.uid ?
             <div>
               {/* publisher check and profile  */}
-              {userRole?.role === 'publisher' && <div>
+              {userRole?.email===user?.email && userRole?.role === 'publisher' && <div>
 
                 <div onClick={() => setCheckRole(!checkRole)} className="w-8 h-8 rounded-full cursor-pointer">
                   {user?.photoURL ? <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" /> : <FaUserCircle className="w-8 h-8 rounded-full border-red-400 border-2" />}
