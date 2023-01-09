@@ -45,7 +45,7 @@ const Navbar = () => {
               <a>CANADA</a>
             </li>
             {userRole?.role === 'publisher' && <li>
-              <Link to='/publish'>Pubilsh</Link>
+              <Link to='/news/addnews'>Add News</Link>
             </li>}
           </ul>
         </div>

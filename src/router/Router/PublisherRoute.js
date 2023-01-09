@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { AuthContext } from "../Contexts/AuthProvider/AuthProvider";
-import usePublisher from "../Hooks/usePublisher";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import usePublisher from "../../Hooks/usePublisher";
+ 
 
 const PublisherRoute = ({ children }) => {
     const { user, loading, } = useContext(AuthContext);
