@@ -4,7 +4,7 @@ import RelativeCard from "./RelativeCard";
 const RelativePost = () => {
   const [news, setNews] = React.useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/news/category/hotTopic")
+    fetch("https://daily-news-server-nu.vercel.app/news/category/hotTopic")
       .then((res) => res.json())
       .then((data) => setNews(data));
   }, []);

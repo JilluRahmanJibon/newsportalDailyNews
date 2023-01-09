@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const SecondNavbar = () => {
   const [category, setCategory] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/news")
+    fetch("https://daily-news-server-nu.vercel.app/news")
       .then((res) => res.json())
       .then((data) => setCategory(data));
   }, []);

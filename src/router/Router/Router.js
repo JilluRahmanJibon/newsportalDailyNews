@@ -22,13 +22,13 @@ export const routes = createBrowserRouter([
         path: "/news/category/:category",
         element: <CategoryData />,
         loader: ({ params }) =>
-          fetch(`http://localhost:8000/news/category/${params.category}`),
+          fetch(`https://daily-news-server-nu.vercel.app/news/category/${params.category}`),
       },
       {
         path: "/news/:id",
         element: <NewsDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:8000/news/${params.id}`),
+          fetch(`https://daily-news-server-nu.vercel.app/news/${params.id}`),
       },
     ],
   },

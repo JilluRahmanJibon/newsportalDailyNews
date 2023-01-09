@@ -15,7 +15,7 @@ export const imageUpload = async (image) => {
 };
 // add news
 export const addNews = async (publishedData) => {
-  const response = await fetch(`http://localhost:8000/news`, {
+  const response = await fetch(`https://daily-news-server-nu.vercel.app/news`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
