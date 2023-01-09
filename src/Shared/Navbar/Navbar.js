@@ -79,7 +79,7 @@ const Navbar = () => {
                 </div>
                 {
                   checkRole && <div className="absolute right-0 bg-blue-500 w-[150px] p-3 rounded-tr-none rounded-lg text-white">
-                    <h1>Profile </h1>
+                    <h1>Publisher Profile </h1>
                     <button onClick={() => userLogOut()} className="">Log out</button>
                   </div>
                 }
