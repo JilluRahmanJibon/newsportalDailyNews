@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RelativeCard = ({ newsData }) => {
-  console.log(newsData);
+ 
   return (
-    <div>
+    <Link to={`/news/${newsData?._id}`}>
       <h1 className="font-bold">{newsData?.category}</h1>
       <div>
         <div className="w-full lg:py-2  flex  ">
@@ -14,7 +14,7 @@ const RelativeCard = ({ newsData }) => {
           </div>
           <div className="px-2">
             <img
-              className="w-[500px] h-full object-cover"
+              className="w-[400px] object-cover h-[200px] "
               src={newsData?.picture}
               alt="/"
             />
@@ -23,7 +23,7 @@ const RelativeCard = ({ newsData }) => {
         </div>
         <div className="w-full h-px bg-black mr-20"></div>
       </div>
-    </div>
+    </Link>
   );
 };
 

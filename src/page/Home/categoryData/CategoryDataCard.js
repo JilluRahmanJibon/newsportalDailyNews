@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const CategoryDataCard = ({ newsData }) => {
   //   console.log(newsData);
   return (
-    <div className=" md:flex  py-5 px-2">
+    <div className="sm:w-10/12 mx-auto md:flex  py-5 px-2">
       <div>
-        <h1 className="w-[150px] pt-2 text-sm font-bold">{newsData?.author?.published_date}</h1>
+        <h1 className="text-sm font-bold w-[150px] pt-2">{newsData?.author?.published_date}</h1>
       </div>
-      <div className="lg:flex md:flex">
+      <div className=" md:flex">
         <div className="w-full h-full  ">
           <Link className="text-[22px] font-bold pt-2">{newsData?.title}</Link>
           <p className="py-3 text-[16px]">{newsData?.description}</p>

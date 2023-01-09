@@ -4,7 +4,7 @@ import Card from "./Card";
 const HomeFixedData = () => {
   const [news, setNews] = React.useState([]);
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_ApiUrl}news/category/Sports`)
+    fetch("http://localhost:8000/news/category/Sports")
       .then((res) => res.json())
       .then((data) => setNews(data));
   }, []);

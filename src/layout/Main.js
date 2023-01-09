@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import Logo from "../Shared/Logo/Logo";
@@ -6,6 +6,19 @@ import Navbar from "../Shared/Navbar/Navbar";
 import SecondNavbar from "../Shared/SecondNavbar/SecondNavbar";
 
 const Main = () => {
+  const [category, setCategory] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/news")
+      .then((res) => res.json())
+      .then((data) => setCategory(data));
+  }, []);
+  // console.log(category);
+  // category name
+  const categoryNames = category.map((category) => category.category);
+
+  //unique category name
+  const uniqueCategory = [...new Set(categoryNames)];
+  // console.log(uniqueCategory);
   return (
     <div>
       <div className="drawer">
@@ -18,59 +31,18 @@ const Main = () => {
           <Footer />
         </div>
         <div className="drawer-side ">
+
           <label htmlFor="sidenav" className="drawer-overlay "></label>
-          <ul className="menu p-4 w-80 bg-white font-bold">
-            <li>
-              <Link to='/login'>Home Page</Link>
-            </li>
-            <li>
-              <Link>World</Link>
-            </li>
-            <li>
-              <Link>Business</Link>
-            </li>
-            <li>
-              <Link>Politics</Link>
-            </li>
-            <li>
-              <Link>U.S</Link>
-            </li>
-            <li>
-              <Link>Sports</Link>
-            </li>
-            <li>
-              <Link>Health</Link>
-            </li>
-            <li>
-              <Link>N.Y</Link>
-            </li>
-            <li>
-              <Link>Opinion</Link>
-            </li>
-            <li>
-              <Link>Tech</Link>
-            </li>
-            <li>
-              <Link>Science</Link>
-            </li>
-            <li>
-              <Link>Games</Link>
-            </li>
-            <li>
-              <Link>Newsletters</Link>
-            </li>
-            <li>
-              <Link>The Learning Network</Link>
-            </li>
-            <li>
-              <Link>Podcasts</Link>
-            </li>
-            <li>
-              <Link>Times Store</Link>
-            </li>
-            <li>
-              <Link>School of NYT</Link>
-            </li>
+
+          <ul className="menu p-4 sm:w-80 bg-white font-bold">
+            <label htmlFor="sidenav" className="absolute btn btn-sm btn-circle z-50 right-2 top-2 cursor-pointer font-bold drawer-button">
+              X
+            </label>
+            {uniqueCategory.map((category, uxi) => (
+              <li key={uxi}>
+                <Link to={`/news/category/${category}`}>{category}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

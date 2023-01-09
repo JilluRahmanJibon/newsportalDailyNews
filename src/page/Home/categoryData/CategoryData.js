@@ -7,7 +7,7 @@ const CategoryData = () => {
   //   console.log(alldata);
 
   return (
-    <div className=" xl:w-4/5 w-11/12 mx-auto py-5 ">
+    <div className="max-w-[1440px] mx-auto">
       {alldata.map((newsData, uxi) => (
         <CategoryDataCard key={uxi} newsData={newsData} />
       ))}
